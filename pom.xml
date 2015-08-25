@@ -7,6 +7,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>service</module>
+        <module>impl</module>
+        <module>persistence</module>
     </modules>
 
     <name>blog Maven Webapp</name>
