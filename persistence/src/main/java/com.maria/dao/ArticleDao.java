@@ -12,9 +12,7 @@ public interface ArticleDao {
 
     public Article getArticle(int id);
 
-    public List getAllArticles();
-
-    public boolean updateArticle(Article article);
+    public List<Article> getAllArticles();
 
     public boolean deleteArticle(Article article);
 

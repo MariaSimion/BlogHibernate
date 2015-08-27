@@ -24,7 +24,7 @@ public class Comment {
     @Column(name = "commentContent")
     private String commentContent;
 
-    @ManyToOne
+
     private Article commentedArticle;
 
     public Comment() {
