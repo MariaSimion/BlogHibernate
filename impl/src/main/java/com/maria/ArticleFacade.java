@@ -16,6 +16,10 @@ public class ArticleFacade {
         return articleDao.getAllArticles();
     }
 
+    public boolean createArticle(Article article){
+        return articleDao.saveArticle(article);
+    }
+
     public ArticleDaoImpl getArticleDao() {
         return articleDao;
     }

@@ -26,6 +26,13 @@ public class Service {
         return articles;
     }
 
+    @POST
+    @Path("/addArticle")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public boolean saveArticle(Article article){
+        return articleFacade.createArticle(article);
+    }
+
     public ArticleFacade getArticleFacade() {
         return articleFacade;
     }
