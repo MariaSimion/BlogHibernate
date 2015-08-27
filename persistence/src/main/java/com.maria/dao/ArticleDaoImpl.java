@@ -46,8 +46,16 @@ public class ArticleDaoImpl implements ArticleDao {
         return articleList;
     }
 
-
+    @Transactional
     public boolean deleteArticle(Article article) {
+
+        if (article != null) {
+            article = entityManager.find(Article.class, article.getId());
+            entityManager.remove(article);
+
+            return true;
+        }
+
         return false;
     }
 }

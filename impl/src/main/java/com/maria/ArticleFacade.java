@@ -20,6 +20,10 @@ public class ArticleFacade {
         return articleDao.saveArticle(article);
     }
 
+    public boolean deleteArticle(Article article){
+        return articleDao.deleteArticle(article);
+    }
+
     public ArticleDaoImpl getArticleDao() {
         return articleDao;
     }

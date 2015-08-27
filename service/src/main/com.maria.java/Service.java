@@ -26,11 +26,18 @@ public class Service {
         return articles;
     }
 
-    @POST
-    @Path("/addArticle")
+    @PUT
+    @Path("/articles")
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean saveArticle(Article article){
         return articleFacade.createArticle(article);
+    }
+
+    @DELETE
+    @Path("/articles")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public boolean deleteArticle(Article article){
+        return articleFacade.deleteArticle(article);
     }
 
     public ArticleFacade getArticleFacade() {
