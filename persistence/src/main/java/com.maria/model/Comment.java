@@ -24,8 +24,9 @@ public class Comment {
     @Column(name = "commentContent")
     private String commentContent;
 
-
-    private Article commentedArticle;
+    @ManyToOne
+    @JoinColumn(name = "idArticle")
+    private Article article;
 
     public Comment() {
     }
@@ -62,12 +63,12 @@ public class Comment {
         this.commentContent = commentContent;
     }
 
-    public Article getCommentedArticle() {
-        return commentedArticle;
+    public Article getArticle() {
+        return article;
     }
 
-    public void setCommentedArticle(Article commentedArticle) {
-        this.commentedArticle = commentedArticle;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
     @Override

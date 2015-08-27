@@ -1,9 +1,12 @@
 package com.maria.model;
 
+import org.hibernate.annotations.Fetch;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
+
 /**
  * Created by msimion on 8/25/2015.
  */
@@ -29,7 +32,8 @@ public class Article implements Serializable {
     @Column(name = "author")
     private String author;
 
-
+    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+    private List<Comment> comments;
 
 
     public Article() {
@@ -75,6 +79,13 @@ public class Article implements Serializable {
         this.author = author;
     }
 
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     @Override
     public boolean equals(Object o) {

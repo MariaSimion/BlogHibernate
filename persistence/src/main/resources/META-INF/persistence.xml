@@ -8,5 +8,8 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
         <class>
             com.maria.model.Article
         </class>
+        <class>
+            com.maria.model.Comment
+        </class>
     </persistence-unit>
 </persistence>

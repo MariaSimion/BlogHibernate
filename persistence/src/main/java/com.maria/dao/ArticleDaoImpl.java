@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     public boolean saveArticle(Article article) {
 
-
+        
         return false;
     }
 
