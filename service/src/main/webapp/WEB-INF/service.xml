@@ -21,6 +21,9 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
     <import resource="classpath:META-INF/impl.xml"/>
 
+    <import resource="classpath:META-INF/dao/dao-main.xml"/>
+    <import resource="classpath:META-INF/facade/facade-main.xml"/>
+
     <bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider">
         <!-- <property name="JSONPFunctionName" value="jsoncallback" /> -->
         <property name="mapper" ref="jacksonObjectMapper"/>

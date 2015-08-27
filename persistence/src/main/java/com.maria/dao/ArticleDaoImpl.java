@@ -1,4 +1,5 @@
 package com.maria.dao;
+
 import com.maria.model.Article;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Created by msimion on 8/25/2015.
  */
-@Repository(value = "articleDao")
+
 public class ArticleDaoImpl implements ArticleDao {
 
     private EntityManager entityManager;
@@ -35,12 +36,8 @@ public class ArticleDaoImpl implements ArticleDao {
 
 
     public List<Article> getAllArticles() {
-        return this.entityManager.createQuery("from Article").getResultList();
-    }
-
-
-    public boolean updateArticle(Article article) {
-        return false;
+        List<Article> articleList = this.entityManager.createQuery("from Article").getResultList();
+        return articleList;
     }
 
 

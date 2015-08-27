@@ -12,10 +12,10 @@
 
     <bean id="blogDataSource"
           class="org.apache.commons.dbcp.BasicDataSource"
-          p:driverClassName="${hibernate.connection.driverClassName}"
-          p:url="${hibernate.connection.url}"
-          p:username="${hibernate.connection.username}"
-          p:password="${hibernate.connection.password}">
+          p:driverClassName= "com.mysql.jdbc.Driver"
+          p:url="${jdbc.url}"
+          p:username="${jdbc.username}"
+          p:password="${jdbc.password}">
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

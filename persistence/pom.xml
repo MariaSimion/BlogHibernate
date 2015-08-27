@@ -10,6 +10,9 @@
     <packaging>jar</packaging>
     <name>blogPersistence Maven Webapp</name>
     <url>http://maven.apache.org</url>
+    <properties>
+        <mysql.version>5.1.36</mysql.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -52,6 +55,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-tx</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
         </dependency>
 
     </dependencies>
