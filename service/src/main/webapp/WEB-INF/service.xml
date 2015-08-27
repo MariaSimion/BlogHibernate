@@ -35,6 +35,11 @@ http://www.springframework.org/schema/context/spring-context.xsd">
                 <constructor-arg value="dd/MM/yyyy"/>
             </bean>
         </property>
+        <property name="deserializationConfig.dateFormat">
+            <bean class="java.text.SimpleDateFormat">
+                <constructor-arg value="dd/MM/yyyy"/>
+            </bean>
+        </property>
     </bean>
 
     <jaxrs:server id="serverjson" address="/rest">
