@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -23,13 +24,17 @@ public class ArticleDaoImpl implements ArticleDao {
 
     }
 
-
+   @Transactional
     public boolean saveArticle(Article article) {
 
-        
+        if (article != null) {
+            article.setDate(new Date());
+            entityManager.persist(article);
+            return true;
+        }
+
         return false;
     }
-
 
     public Article getArticle(int id) {
         return null;

@@ -32,8 +32,10 @@ public class Article implements Serializable {
     @Column(name = "author")
     private String author;
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "commentedArticle", fetch = FetchType.EAGER)
     private List<Comment> comments;
+
+
 
 
     public Article() {

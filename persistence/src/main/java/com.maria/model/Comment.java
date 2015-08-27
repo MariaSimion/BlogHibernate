@@ -26,7 +26,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "idArticle")
-    private Article article;
+    private Article commentedArticle;
 
     public Comment() {
     }
@@ -63,13 +63,15 @@ public class Comment {
         this.commentContent = commentContent;
     }
 
-    public Article getArticle() {
-        return article;
+
+    public Article getCommentedArticle() {
+        return commentedArticle;
     }
 
-    public void setArticle(Article article) {
-        this.article = article;
+    public void setCommentedArticle(Article commentedArticle) {
+        this.commentedArticle = commentedArticle;
     }
+
 
     @Override
     public boolean equals(Object o) {
