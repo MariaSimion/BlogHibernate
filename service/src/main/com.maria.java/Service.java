@@ -1,8 +1,8 @@
 import com.maria.ArticleFacade;
-import com.maria.dao.ArticleDaoImpl;
 import com.maria.model.Article;
 
-import javax.annotation.Resource;
+import javax.jws.WebParam;
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -24,6 +24,13 @@ public class Service {
 
         List<Article> articles = this.articleFacade.getArticles();
         return articles;
+    }
+
+    @GET
+    @Path("/articles/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Article getArticle(@PathParam("id") int id){
+        return articleFacade.getArticle(id);
     }
 
     @PUT

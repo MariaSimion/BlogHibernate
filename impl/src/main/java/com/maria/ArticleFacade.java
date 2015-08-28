@@ -1,6 +1,6 @@
 package com.maria;
 
-import com.maria.dao.ArticleDaoImpl;
+import com.maria.daoImpl.ArticleDaoImpl;
 import com.maria.model.Article;
 
 import java.util.List;
@@ -11,6 +11,10 @@ import java.util.List;
 public class ArticleFacade {
 
     ArticleDaoImpl articleDao;
+
+    public Article getArticle(int id){
+       return articleDao.getArticle(id);
+    }
 
     public List<Article> getArticles(){
         return articleDao.getAllArticles();

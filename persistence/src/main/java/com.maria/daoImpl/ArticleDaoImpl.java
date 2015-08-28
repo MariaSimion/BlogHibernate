@@ -1,6 +1,7 @@
 package com.maria.daoImpl;
 
 import com.maria.dao.ArticleDao;
+import com.maria.dao.GenericDao;
 import com.maria.model.Article;
 import org.springframework.stereotype.Repository;
 
@@ -14,9 +15,13 @@ import java.util.List;
  * Created by msimion on 8/25/2015.
  */
 
-public class ArticleDaoImpl implements ArticleDao {
+public class ArticleDaoImpl extends GenericDaoImpl<Article> implements ArticleDao {
 
     private EntityManager entityManager;
+
+    public ArticleDaoImpl() {
+    }
+
 
     @PersistenceContext
     public void setEntityManager(EntityManager entityManager) {
@@ -25,7 +30,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     }
 
-   @Transactional
+    @Transactional
     public boolean saveArticle(Article article) {
 
         if (article != null) {
@@ -37,8 +42,10 @@ public class ArticleDaoImpl implements ArticleDao {
         return false;
     }
 
+
     public Article getArticle(int id) {
-        return null;
+
+        return this.entityManager.find(Article.class, id);
     }
 
 

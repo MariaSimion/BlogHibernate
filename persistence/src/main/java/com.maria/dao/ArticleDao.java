@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by msimion on 8/25/2015.
  */
-public interface ArticleDao {
+public interface ArticleDao extends GenericDao<Article> {
 
     public boolean saveArticle(Article article);
 
