@@ -35,8 +35,9 @@ public class Article implements Serializable {
     @OneToMany(mappedBy = "commentedArticle", fetch = FetchType.EAGER)
     private List<Comment> comments;
 
-
-
+    @ManyToOne
+    @JoinColumn(name = "idUser")
+    private User user;
 
     public Article() {
     }
@@ -87,6 +88,14 @@ public class Article implements Serializable {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User idUser) {
+        this.user = idUser;
     }
 
     @Override
