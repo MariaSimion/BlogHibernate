@@ -1,5 +1,6 @@
-package com.maria.dao;
+package com.maria.daoImpl;
 
+import com.maria.dao.ArticleDao;
 import com.maria.model.Article;
 import org.springframework.stereotype.Repository;
 
