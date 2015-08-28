@@ -18,6 +18,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!-- Import service implementation -->
     <import resource="classpath:META-INF/service/rest.service.xml"/>
+    <import resource="classpath:META-INF/service/rest.service.comment.xml"/>
 
     <import resource="classpath:META-INF/impl.xml"/>
 
@@ -45,10 +46,12 @@ http://www.springframework.org/schema/context/spring-context.xsd">
     <jaxrs:server id="serverjson" address="/rest">
         <jaxrs:serviceBeans>
             <ref bean="restService"/>
+            <ref bean="restServiceComment"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
         </jaxrs:providers>
     </jaxrs:server>
+
 
 </beans>

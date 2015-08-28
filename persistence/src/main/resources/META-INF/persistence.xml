@@ -11,5 +11,8 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
         <class>
             com.maria.model.Comment
         </class>
+        <class>
+            com.maria.model.User
+        </class>
     </persistence-unit>
 </persistence>

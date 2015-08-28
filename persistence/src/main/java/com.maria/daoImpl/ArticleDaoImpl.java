@@ -17,17 +17,7 @@ import java.util.List;
 
 public class ArticleDaoImpl extends GenericDaoImpl<Article> implements ArticleDao {
 
-    private EntityManager entityManager;
-
     public ArticleDaoImpl() {
-    }
-
-
-    @PersistenceContext
-    public void setEntityManager(EntityManager entityManager) {
-
-        this.entityManager = entityManager;
-
     }
 
     @Transactional

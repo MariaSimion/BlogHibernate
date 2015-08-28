@@ -32,9 +32,6 @@ public class Article implements Serializable {
     @Column(name = "author")
     private String author;
 
-    @OneToMany(mappedBy = "commentedArticle", fetch = FetchType.EAGER)
-    private List<Comment> comments;
-
     @ManyToOne
     @JoinColumn(name = "idUser")
     private User user;
@@ -80,14 +77,6 @@ public class Article implements Serializable {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 
     public User getUser() {
