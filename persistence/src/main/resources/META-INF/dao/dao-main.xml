@@ -5,4 +5,5 @@
 
     <import resource="article-dao.xml"/>
     <import resource="comment-dao.xml"/>
+    <import resource="user-dao.xml"/>
 </beans>

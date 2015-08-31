@@ -1,7 +1,12 @@
 package com.maria.dao;
 
+import com.maria.model.User;
+
+import java.util.List;
+
 /**
  * Created by msimion on 8/31/2015.
  */
-public interface UserDao {
+public interface UserDao extends GenericDao<User> {
+
 }
