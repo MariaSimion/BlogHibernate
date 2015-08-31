@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 @Path("/")
-public class Service {
+public class ServiceArticle {
 
 
     ArticleFacade articleFacade;
