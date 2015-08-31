@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="Service" name="restService">
+    <bean class="ServiceArticle" name="restService">
         <property name="articleFacade" ref="articleFacade"/>
     </bean>
 

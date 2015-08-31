@@ -13,7 +13,15 @@ public class CommentFacade {
 
     CommentDaoImpl commentDao;
 
-    public List<Comment> getCommentsFromAnArticle(int id){
+    public boolean saveComment(Comment comment, int id) {
+        return commentDao.saveComment(comment, id);
+    }
+
+    public boolean deleteComment(Comment comment) {
+        return commentDao.deleteComment(comment);
+    }
+
+    public List<Comment> getCommentsFromAnArticle(int id) {
         return commentDao.getAllCommentsFromAnArticle(id);
     }
 

@@ -17,8 +17,8 @@ http://www.springframework.org/schema/context/spring-context.xsd">
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
 
     <!-- Import service implementation -->
-    <import resource="classpath:META-INF/service/rest.service.xml"/>
-    <import resource="classpath:META-INF/service/rest.service.comment.xml"/>
+    <import resource="classpath:META-INF/service/service.article.xml"/>
+    <import resource="classpath:META-INF/service/service.comment.xml"/>
 
     <import resource="classpath:META-INF/impl.xml"/>
 
@@ -44,14 +44,22 @@ http://www.springframework.org/schema/context/spring-context.xsd">
     </bean>
 
     <jaxrs:server id="serverjson" address="/rest">
-        <jaxrs:serviceBeans>
-            <ref bean="restService"/>
-            <ref bean="restServiceComment"/>
-        </jaxrs:serviceBeans>
+        <jaxrs:serviceFactories>
+            <ref bean="serviceArticle"/>
+            <ref bean="serviceComment"/>
+        </jaxrs:serviceFactories>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
         </jaxrs:providers>
     </jaxrs:server>
+
+    <bean id="serviceArticle" class="org.apache.cxf.jaxrs.spring.SpringResourceFactory">
+        <property name="beanId" value="restService"/>
+    </bean>
+
+    <bean id="serviceComment" class="org.apache.cxf.jaxrs.spring.SpringResourceFactory">
+        <property name="beanId" value="restServiceComment"/>
+    </bean>
 
 
 </beans>
