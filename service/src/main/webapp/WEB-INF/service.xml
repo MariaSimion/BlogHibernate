@@ -19,6 +19,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
     <!-- Import service implementation -->
     <import resource="classpath:META-INF/service/service.article.xml"/>
     <import resource="classpath:META-INF/service/service.comment.xml"/>
+    <import resource="classpath:META-INF/service/service.user.xml"/>
 
     <import resource="classpath:META-INF/impl.xml"/>
 
@@ -47,6 +48,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
         <jaxrs:serviceFactories>
             <ref bean="serviceArticle"/>
             <ref bean="serviceComment"/>
+            <ref bean="serviceUser"/>
         </jaxrs:serviceFactories>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
@@ -59,6 +61,10 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="serviceComment" class="org.apache.cxf.jaxrs.spring.SpringResourceFactory">
         <property name="beanId" value="restServiceComment"/>
+    </bean>
+
+    <bean id="serviceUser" class="org.apache.cxf.jaxrs.spring.SpringResourceFactory">
+        <property name="beanId" value="restServiceUser"/>
     </bean>
 
 

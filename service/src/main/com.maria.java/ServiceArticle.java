@@ -12,8 +12,7 @@ import java.util.List;
 /**
  * Created by msimion on 8/25/2015.
  */
-
-@Path("/")
+@Path("/articles")
 public class ServiceArticle {
 
 
@@ -21,7 +20,6 @@ public class ServiceArticle {
 
 
     @GET
-    @Path("/articles")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Article> getAllArticles() {
 
@@ -30,7 +28,7 @@ public class ServiceArticle {
     }
 
     @GET
-    @Path("/articles/{id}")
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Article getArticle(@PathParam("id") int id) {
         return articleFacade.getArticle(id);
@@ -38,14 +36,12 @@ public class ServiceArticle {
 
 
     @PUT
-    @Path("/articles")
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean saveArticle(Article article) {
         return articleFacade.createArticle(article);
     }
 
     @DELETE
-    @Path("/articles")
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean deleteArticle(Article article) {
         return articleFacade.deleteArticle(article);
