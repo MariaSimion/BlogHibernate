@@ -1,3 +1,5 @@
+package service;
+
 import com.maria.ArticleFacade;
 import com.maria.CommentFacade;
 import com.maria.model.Article;
@@ -5,6 +7,7 @@ import com.maria.model.Comment;
 
 import javax.jws.WebParam;
 import javax.print.attribute.standard.Media;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -18,13 +21,10 @@ public class ServiceArticle {
 
     ArticleFacade articleFacade;
 
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Article> getAllArticles() {
-
-        List<Article> articles = this.articleFacade.getArticles();
-        return articles;
+        return articleFacade.getArticles();
     }
 
     @GET
@@ -34,17 +34,17 @@ public class ServiceArticle {
         return articleFacade.getArticle(id);
     }
 
-
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public boolean saveArticle(Article article) {
-        return articleFacade.createArticle(article);
-    }
-
     @DELETE
+    @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean deleteArticle(Article article) {
-        return articleFacade.deleteArticle(article);
+    public void deleteArticle(Article article) {
+        Article persisted = getArticle(article.getId());
+        if (persisted != null){
+            articleFacade.deleteArticle(persisted);
+        } else{
+            throw new RuntimeException(String.format("Article with id %s cannot be found.", article.getId()));
+        }
+
     }
 
     public ArticleFacade getArticleFacade() {

@@ -1,4 +1,4 @@
-package com.maria;
+package com.maria.facade;
 
 import com.maria.daoImpl.UserDaoImpl;
 import com.maria.model.User;
@@ -12,6 +12,10 @@ public class UserFacade {
 
     public void saveUser(User user) {
         userDao.save(user);
+    }
+
+    public User getUser(int id) {
+        return userDao.get(id);
     }
 
     public UserDaoImpl getUserDao() {

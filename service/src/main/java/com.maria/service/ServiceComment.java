@@ -1,7 +1,10 @@
+package service;
+
 import com.maria.CommentFacade;
 import com.maria.model.Comment;
 
 import javax.print.attribute.standard.Media;
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
@@ -10,6 +13,7 @@ import java.util.List;
  * Created by msimion on 8/28/2015.
  */
 @Path("/articles/{id}/comments")
+@Transactional
 public class ServiceComment {
 
     CommentFacade commentFacade;
@@ -20,18 +24,20 @@ public class ServiceComment {
         return commentFacade.getCommentsFromAnArticle(id);
     }
 
-    @PUT
+    @POST
+    @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean saveComment(Comment comment, @PathParam("id") int id) {
+    public Comment saveComment(Comment comment, @PathParam("id") int id) {
         return commentFacade.saveComment(comment, id);
     }
 
     @DELETE
+    @Transactional
     @Path("/{idComment}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean deleteComment(Comment comment, @PathParam("idComment") int id){
+    public void deleteComment(Comment comment, @PathParam("idComment") int id) {
 
-        return commentFacade.deleteComment(comment);
+        commentFacade.deleteComment(comment);
     }
 
     public CommentFacade getCommentFacade() {

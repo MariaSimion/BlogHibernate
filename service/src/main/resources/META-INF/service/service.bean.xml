@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="serviceArticle" class="com.maria.service.ServiceArticle">
+        <constructor-arg ref="articleFacade"/>
+    </bean>
+
+    <bean class="com.maria.service.ServiceComment" name="restServiceComment">
+        <property name="commentFacade" ref="commentFacade"/>
+    </bean>
+
+    <bean class="com.maria.service.ServiceUser" name="restServiceUser">
+        <property name="userFacade" ref="userFacade"/>
+        <property name="articleFacade" ref="articleFacade"/>
+        <property name="commentFacade" ref="commentFacade"/>
+    </bean>
+
+</beans>
