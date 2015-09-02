@@ -3,10 +3,13 @@ package com.maria.daoImpl;
 import com.maria.dao.ArticleDao;
 import com.maria.dao.GenericDao;
 import com.maria.model.Article;
+import com.maria.model.User;
+
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
@@ -18,42 +21,31 @@ import java.util.List;
 public class ArticleDaoImpl extends GenericDaoImpl<Article> implements ArticleDao {
 
     public ArticleDaoImpl() {
+        super(Article.class);
     }
 
-    @Transactional
-    public boolean saveArticle(Article article) {
 
-        if (article != null) {
-            article.setDate(new Date());
-            entityManager.persist(article);
-            return true;
+    public Article saveArticle(Article article, User user) {
+
+        article.setDate(new Date());
+        article.setUser(user);
+        save(article);
+        return article;
+
+    }
+
+    public List<Article> getAllArticlesForOneUser(int idUser){
+        Query query = this.entityManager.createQuery("from Article where idUser=:idUser");
+        query.setParameter("idUser", idUser);
+        return query.getResultList();
+    }
+
+    public Article getOneArticleForOneUser(int idUser, int idArticle){
+        Article article = entityManager.find(Article.class, idArticle);
+        User user = entityManager.find(User.class, idUser);
+        if(user.equals(article.getUser())){
+            return article;
         }
-
-        return false;
-    }
-
-
-    public Article getArticle(int id) {
-
-        return this.entityManager.find(Article.class, id);
-    }
-
-
-    public List<Article> getAllArticles() {
-        List<Article> articleList = this.entityManager.createQuery("from Article").getResultList();
-        return articleList;
-    }
-
-    @Transactional
-    public boolean deleteArticle(Article article) {
-
-        if (article != null) {
-            article = entityManager.find(Article.class, article.getId());
-            entityManager.remove(article);
-
-            return true;
-        }
-
-        return false;
+        return null;
     }
 }

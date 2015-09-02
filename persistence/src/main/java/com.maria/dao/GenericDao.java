@@ -7,9 +7,9 @@ import java.util.List;
  */
 public interface GenericDao<T extends Object>{
 
-    public T get(Long id);
+    public T get(int id);
     public List<T> getAll();
     public void save(T object);
-    public void delete(T object);
+    public void delete(T object, int id);
 
 }

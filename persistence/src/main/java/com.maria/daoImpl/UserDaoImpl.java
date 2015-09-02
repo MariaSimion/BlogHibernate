@@ -2,7 +2,10 @@ package com.maria.daoImpl;
 
 import com.maria.dao.GenericDao;
 import com.maria.dao.UserDao;
+import com.maria.model.Article;
 import com.maria.model.User;
+
+import java.util.List;
 
 /**
  * Created by msimion on 8/31/2015.
@@ -10,7 +13,7 @@ import com.maria.model.User;
 public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
     public UserDaoImpl() {
+        super(User.class);
     }
-
 
 }

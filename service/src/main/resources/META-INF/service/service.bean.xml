@@ -7,14 +7,13 @@
         <constructor-arg ref="articleFacade"/>
     </bean>
 
-    <bean class="com.maria.service.ServiceComment" name="restServiceComment">
-        <property name="commentFacade" ref="commentFacade"/>
+    <bean id="erviceComment" class="com.maria.service.ServiceComment">
+        <constructor-arg ref="commentFacade"/>
     </bean>
 
-    <bean class="com.maria.service.ServiceUser" name="restServiceUser">
-        <property name="userFacade" ref="userFacade"/>
-        <property name="articleFacade" ref="articleFacade"/>
-        <property name="commentFacade" ref="commentFacade"/>
-    </bean>
+   
+    <bean id="articleFacade" class="com.maria.facade.ArticleFacade"/>
+    <bean id="commentFacade" class="com.maria.facade.CommentFacade"/>
+    <bean id="userFacade" class="com.maria.facade.CommentFacade"/>
 
 </beans>

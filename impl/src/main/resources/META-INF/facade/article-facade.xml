@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-       <bean id="articleFacade" class="com.maria.ArticleFacade">
+       <bean id="articleFacade" class="com.maria.facade.ArticleFacade">
               <property name="articleDao" ref="articleDao"/>
        </bean>
 </beans>

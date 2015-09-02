@@ -19,20 +19,19 @@ public class CommentDaoImpl extends GenericDaoImpl<Comment> implements CommentDa
     ArticleDaoImpl articleDaoImpl = new ArticleDaoImpl();
 
     public CommentDaoImpl() {
+        super(Comment.class);
     }
 
-    @Transactional
-    public boolean saveComment(Comment comment, int id) {
+
+    public Comment saveComment(Comment comment, int id) {
 
         Article article;
-        if (comment != null) {
-            comment.setDate(new Date());
-            article = entityManager.find(Article.class, id);
-            comment.setArticle(article);
-            entityManager.persist(comment);
-            return true;
-        }
-        return false;
+        comment.setDate(new Date());
+        article = entityManager.find(Article.class, id);
+        comment.setArticle(article);
+        save(comment);
+        return comment;
+
     }
 
 
@@ -42,16 +41,6 @@ public class CommentDaoImpl extends GenericDaoImpl<Comment> implements CommentDa
         return query.getResultList();
     }
 
-    @Transactional
-    public boolean deleteComment(Comment comment) {
-
-        if (comment != null) {
-            comment = entityManager.find(Comment.class, comment.getId());
-            entityManager.remove(comment);
-            return true;
-        }
-        return false;
-    }
 
     public ArticleDaoImpl getArticleDaoImpl() {
         return articleDaoImpl;

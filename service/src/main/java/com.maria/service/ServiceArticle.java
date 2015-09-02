@@ -1,12 +1,12 @@
-package service;
+package com.maria.service;
 
-import com.maria.ArticleFacade;
-import com.maria.CommentFacade;
+import com.maria.facade.ArticleFacade;
+
+import com.maria.api.IServiceArticle;
+import com.maria.exceptions.CustomException;
 import com.maria.model.Article;
-import com.maria.model.Comment;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.jws.WebParam;
-import javax.print.attribute.standard.Media;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -16,10 +16,17 @@ import java.util.List;
  * Created by msimion on 8/25/2015.
  */
 @Path("/articles")
-public class ServiceArticle {
+public class ServiceArticle implements IServiceArticle {
 
 
-    ArticleFacade articleFacade;
+
+    private final ArticleFacade articleFacade;
+
+
+
+    public ServiceArticle(ArticleFacade articleFacade) {
+        this.articleFacade = articleFacade;
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -39,20 +46,13 @@ public class ServiceArticle {
     @Consumes(MediaType.APPLICATION_JSON)
     public void deleteArticle(Article article) {
         Article persisted = getArticle(article.getId());
-        if (persisted != null){
+        if (persisted != null) {
             articleFacade.deleteArticle(persisted);
-        } else{
-            throw new RuntimeException(String.format("Article with id %s cannot be found.", article.getId()));
+        } else {
+            throw new CustomException(String.format("Article with id %s cannot be found.", article.getId()));
         }
 
     }
 
-    public ArticleFacade getArticleFacade() {
-        return articleFacade;
-    }
-
-    public void setArticleFacade(ArticleFacade articleFacade) {
-        this.articleFacade = articleFacade;
-    }
 
 }

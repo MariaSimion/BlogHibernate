@@ -1,13 +1,14 @@
-package service;
+package com.maria.service;
 
-import com.maria.ArticleFacade;
-import com.maria.CommentFacade;
-import com.maria.UserFacade;
+import com.maria.api.IServiceUser;
+import com.maria.facade.ArticleFacade;
+import com.maria.facade.CommentFacade;
+import com.maria.facade.UserFacade;
 import com.maria.model.Article;
 import com.maria.model.Comment;
 import com.maria.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.print.attribute.standard.Media;
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 
@@ -18,13 +19,20 @@ import java.util.List;
  * Created by msimion on 8/31/2015.
  */
 @Path("/user")
-public class ServiceUser {
+public class ServiceUser implements IServiceUser{
 
-    UserFacade userFacade;
+    private final UserFacade userFacade;
 
-    ArticleFacade articleFacade;
+    private final ArticleFacade articleFacade;
 
-    CommentFacade commentFacade;
+    private final CommentFacade commentFacade;
+
+    @Autowired
+    public ServiceUser(UserFacade userFacade, ArticleFacade articleFacade, CommentFacade commentFacade) {
+        this.userFacade = userFacade;
+        this.articleFacade = articleFacade;
+        this.commentFacade = commentFacade;
+    }
 
     @POST
     @Transactional
@@ -50,43 +58,17 @@ public class ServiceUser {
     @GET
     @Path("/{idUser}/articles/{idArticle}/comments")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Comment> getCommentsFromAnArticle(@PathParam("idUser") int idUser, @PathParam("idArticle") int idArticle){
+    public List<Comment> getCommentsFromAnArticle(@PathParam("idUser") int idUser, @PathParam("idArticle") int idArticle) {
         return commentFacade.getCommentsFromAnArticleForOneUser(idArticle, idUser);
     }
 
     @POST
     @Transactional
-    @Path("/articles")
+    @Path("/{idUser}/articles")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Article saveArticle( Article article) {
+    public Article saveArticle(@PathParam("idUser") int idUser, Article article) {
 
-        //User user = userFacade.getUser(idUser);
-       // return articleFacade.createArticle(article, user);
-        return null;
-    }
-
-    public UserFacade getUserFacade() {
-        return userFacade;
-    }
-
-    public void setUserFacade(UserFacade userFacade) {
-        this.userFacade = userFacade;
-    }
-
-    public ArticleFacade getArticleFacade() {
-        return articleFacade;
-    }
-
-
-    public void setArticleFacade(ArticleFacade articleFacade) {
-        this.articleFacade = articleFacade;
-    }
-
-    public CommentFacade getCommentFacade() {
-        return commentFacade;
-    }
-
-    public void setCommentFacade(CommentFacade commentFacade) {
-        this.commentFacade = commentFacade;
+        User user = userFacade.getUser(idUser);
+        return articleFacade.createArticle(article, user);
     }
 }

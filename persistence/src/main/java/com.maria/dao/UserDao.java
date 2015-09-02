@@ -1,5 +1,6 @@
 package com.maria.dao;
 
+import com.maria.model.Article;
 import com.maria.model.User;
 
 import java.util.List;

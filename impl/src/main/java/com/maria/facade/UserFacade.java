@@ -1,12 +1,13 @@
 package com.maria.facade;
 
+import com.maria.api.IUserFacade;
 import com.maria.daoImpl.UserDaoImpl;
 import com.maria.model.User;
 
 /**
  * Created by msimion on 8/31/2015.
  */
-public class UserFacade {
+public class UserFacade implements IUserFacade{
 
     UserDaoImpl userDao;
 

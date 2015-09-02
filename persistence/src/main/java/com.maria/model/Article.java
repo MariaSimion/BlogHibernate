@@ -1,7 +1,5 @@
 package com.maria.model;
 
-import org.hibernate.annotations.Fetch;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

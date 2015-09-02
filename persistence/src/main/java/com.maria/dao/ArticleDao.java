@@ -1,5 +1,6 @@
 package com.maria.dao;
 import com.maria.model.Article;
+import com.maria.model.User;
 
 import java.util.List;
 
@@ -8,12 +9,9 @@ import java.util.List;
  */
 public interface ArticleDao extends GenericDao<Article> {
 
-    public boolean saveArticle(Article article);
+    public List<Article> getAllArticlesForOneUser(int idUser);
 
-    public Article getArticle(int id);
+    public Article saveArticle(Article article, User user);
 
-    public List<Article> getAllArticles();
-
-    public boolean deleteArticle(Article article);
-
+    public Article getOneArticleForOneUser(int idUser, int idArticle);
 }

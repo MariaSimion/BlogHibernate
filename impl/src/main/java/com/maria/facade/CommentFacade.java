@@ -1,5 +1,6 @@
 package com.maria.facade;
 
+import com.maria.api.ICommentFacade;
 import com.maria.daoImpl.ArticleDaoImpl;
 import com.maria.daoImpl.CommentDaoImpl;
 import com.maria.daoImpl.UserDaoImpl;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * Created by msimion on 8/28/2015.
  */
-public class CommentFacade {
+public class CommentFacade implements ICommentFacade{
 
     CommentDaoImpl commentDao;
 

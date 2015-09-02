@@ -1,5 +1,6 @@
 package com.maria.facade;
 
+import com.maria.api.IArticleFacade;
 import com.maria.daoImpl.ArticleDaoImpl;
 import com.maria.model.Article;
 import com.maria.model.User;
@@ -10,7 +11,7 @@ import java.util.List;
 /**
  * Created by msimion on 8/27/2015.
  */
-public class ArticleFacade {
+public class ArticleFacade implements IArticleFacade{
 
     ArticleDaoImpl articleDao;
 
