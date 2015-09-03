@@ -23,6 +23,8 @@ public interface IArticleFacade {
 
     void deleteArticle(Article article) throws RuntimeException;
 
+    void delete(int idUser, int idArticle);
+
     ArticleDaoImpl getArticleDao();
 
     void setArticleDao(ArticleDaoImpl articleDao);

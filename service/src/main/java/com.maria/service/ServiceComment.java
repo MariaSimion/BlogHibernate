@@ -1,5 +1,6 @@
 package com.maria.service;
 
+import com.maria.api.ICommentFacade;
 import com.maria.api.IServiceComment;
 import com.maria.facade.CommentFacade;
 import com.maria.model.Comment;
@@ -17,12 +18,8 @@ import java.util.List;
 @Transactional
 public class ServiceComment implements IServiceComment{
 
-    private final CommentFacade commentFacade;
-
     @Autowired
-    public ServiceComment(CommentFacade commentFacade) {
-        this.commentFacade = commentFacade;
-    }
+    private ICommentFacade commentFacade;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -45,4 +42,9 @@ public class ServiceComment implements IServiceComment{
 
         commentFacade.deleteComment(comment);
     }
+
+    public void setCommentFacade(CommentFacade commentFacade) {
+        this.commentFacade = commentFacade;
+    }
+
 }

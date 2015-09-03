@@ -48,4 +48,12 @@ public class ArticleDaoImpl extends GenericDaoImpl<Article> implements ArticleDa
         }
         return null;
     }
+
+    public void deleteArticle(int idUser, int idArticle) {
+        Article article = entityManager.find(Article.class, idArticle);
+        User user = entityManager.find(User.class, idUser);
+        if(user.equals(article.getUser())){
+            delete(article, idArticle);
+        }
+    }
 }

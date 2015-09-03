@@ -1,5 +1,6 @@
 package com.maria.service;
 
+import com.maria.api.IArticleFacade;
 import com.maria.facade.ArticleFacade;
 
 import com.maria.api.IServiceArticle;
@@ -18,15 +19,8 @@ import java.util.List;
 @Path("/articles")
 public class ServiceArticle implements IServiceArticle {
 
-
-
-    private final ArticleFacade articleFacade;
-
-
-
-    public ServiceArticle(ArticleFacade articleFacade) {
-        this.articleFacade = articleFacade;
-    }
+    @Autowired
+    private IArticleFacade articleFacade;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -41,18 +35,7 @@ public class ServiceArticle implements IServiceArticle {
         return articleFacade.getArticle(id);
     }
 
-    @DELETE
-    @Transactional
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void deleteArticle(Article article) {
-        Article persisted = getArticle(article.getId());
-        if (persisted != null) {
-            articleFacade.deleteArticle(persisted);
-        } else {
-            throw new CustomException(String.format("Article with id %s cannot be found.", article.getId()));
-        }
-
+    public void setArticleFacade(ArticleFacade articleFacade) {
+        this.articleFacade = articleFacade;
     }
-
-
 }

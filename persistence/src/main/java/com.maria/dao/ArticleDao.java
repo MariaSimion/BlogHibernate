@@ -14,4 +14,6 @@ public interface ArticleDao extends GenericDao<Article> {
     public Article saveArticle(Article article, User user);
 
     public Article getOneArticleForOneUser(int idUser, int idArticle);
+
+    public void deleteArticle(int idUser, int idArticle);
 }

@@ -1,6 +1,10 @@
 package com.maria.service;
 
+import com.maria.api.IArticleFacade;
+import com.maria.api.ICommentFacade;
 import com.maria.api.IServiceUser;
+import com.maria.api.IUserFacade;
+import com.maria.exceptions.CustomException;
 import com.maria.facade.ArticleFacade;
 import com.maria.facade.CommentFacade;
 import com.maria.facade.UserFacade;
@@ -19,20 +23,16 @@ import java.util.List;
  * Created by msimion on 8/31/2015.
  */
 @Path("/user")
-public class ServiceUser implements IServiceUser{
-
-    private final UserFacade userFacade;
-
-    private final ArticleFacade articleFacade;
-
-    private final CommentFacade commentFacade;
+public class ServiceUser implements IServiceUser {
 
     @Autowired
-    public ServiceUser(UserFacade userFacade, ArticleFacade articleFacade, CommentFacade commentFacade) {
-        this.userFacade = userFacade;
-        this.articleFacade = articleFacade;
-        this.commentFacade = commentFacade;
-    }
+    private IUserFacade userFacade;
+
+    @Autowired
+    private IArticleFacade articleFacade;
+
+    @Autowired
+    private ICommentFacade commentFacade;
 
     @POST
     @Transactional
@@ -70,5 +70,45 @@ public class ServiceUser implements IServiceUser{
 
         User user = userFacade.getUser(idUser);
         return articleFacade.createArticle(article, user);
+    }
+
+    @DELETE
+    @Transactional
+    @Path("/{idUser}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void deleteUser(@PathParam("idUser") int idUser){
+        User userPersisted = userFacade.getUser(idUser);
+        if(userPersisted != null){
+            userFacade.deleteUser(userPersisted);
+        }else{
+            throw new CustomException(String.format("User with id %s cannot be found.", idUser));
+        }
+    }
+
+    @DELETE
+    @Transactional
+    @Path("/{idUser}/articles/{idArticle}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void deleteArticle(@PathParam("idUser") int idUser, @PathParam("idArticle") int idArticle) {
+        Article persisted = getArticle(idUser, idArticle);
+        if (persisted != null) {
+            articleFacade.delete(idUser, idArticle);
+        } else {
+            throw new CustomException(String.format("Article with id %s cannot be found.", idArticle));
+        }
+
+    }
+
+
+    public void setUserFacade(UserFacade userFacade) {
+        this.userFacade = userFacade;
+    }
+
+    public void setArticleFacade(ArticleFacade articleFacade) {
+        this.articleFacade = articleFacade;
+    }
+
+    public void setCommentFacade(CommentFacade commentFacade) {
+        this.commentFacade = commentFacade;
     }
 }

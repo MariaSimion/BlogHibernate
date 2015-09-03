@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by msimion on 8/28/2015.
  */
-public class CommentFacade implements ICommentFacade{
+public class CommentFacade implements ICommentFacade {
 
     CommentDaoImpl commentDao;
 
@@ -26,7 +26,7 @@ public class CommentFacade implements ICommentFacade{
     }
 
     public void deleteComment(Comment comment) {
-
+        commentDao.delete(comment, comment.getId());
     }
 
     public List<Comment> getCommentsFromAnArticle(int id) {

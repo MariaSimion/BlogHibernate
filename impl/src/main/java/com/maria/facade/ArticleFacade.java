@@ -40,6 +40,9 @@ public class ArticleFacade implements IArticleFacade{
         articleDao.delete(article, article.getId());
     }
 
+    public void delete(int idUser, int idArticle){
+        articleDao.deleteArticle(idUser, idArticle);
+    }
     public ArticleDaoImpl getArticleDao() {
         return articleDao;
     }

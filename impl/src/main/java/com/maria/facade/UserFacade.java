@@ -26,4 +26,8 @@ public class UserFacade implements IUserFacade{
     public void setUserDao(UserDaoImpl userDao) {
         this.userDao = userDao;
     }
+
+    public void deleteUser(User user){
+        userDao.delete(user, user.getId());
+    }
 }

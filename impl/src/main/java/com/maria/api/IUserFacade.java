@@ -14,4 +14,6 @@ public interface IUserFacade {
     UserDaoImpl getUserDao();
 
     void setUserDao(UserDaoImpl userDao);
+
+    void deleteUser(User user);
 }
