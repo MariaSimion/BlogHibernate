@@ -16,4 +16,12 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
         super(User.class);
     }
 
+    public User persist(User user) {
+        if (user.getId() != 0) {
+            entityManager.merge(user);
+        } else {
+            persist(user);
+        }
+        return user;
+    }
 }

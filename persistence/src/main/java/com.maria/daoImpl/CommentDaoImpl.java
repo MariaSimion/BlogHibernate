@@ -25,13 +25,17 @@ public class CommentDaoImpl extends GenericDaoImpl<Comment> implements CommentDa
 
     public Comment saveComment(Comment comment, int id) {
 
-        Article article;
-        comment.setDate(new Date());
-        article = entityManager.find(Article.class, id);
-        comment.setArticle(article);
-        persist(comment);
-        return comment;
+        if (comment.getId() != 0) {
+            entityManager.merge(comment);
+        } else {
+            Article article;
+            comment.setDate(new Date());
+            article = entityManager.find(Article.class, id);
+            comment.setArticle(article);
+            persist(comment);
+        }
 
+        return comment;
     }
 
 

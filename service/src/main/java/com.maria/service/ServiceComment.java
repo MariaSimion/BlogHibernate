@@ -34,7 +34,7 @@ public class ServiceComment implements IServiceComment{
         return commentFacade.getCommentsFromAnArticle(id);
     }
 
-    @POST
+    @PUT
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public Comment saveComment(Comment comment, @PathParam("id") int id) {

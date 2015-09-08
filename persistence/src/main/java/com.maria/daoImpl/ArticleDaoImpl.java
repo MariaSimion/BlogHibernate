@@ -21,12 +21,14 @@ public class ArticleDaoImpl extends GenericDaoImpl<Article> implements ArticleDa
 
 
     public Article persist(Article article, User user) {
-
-        article.setDate(new Date());
-        article.setUser(user);
-        persist(article);
+        if (article.getId() != 0) {
+            entityManager.merge(article);
+        } else {
+            article.setDate(new Date());
+            article.setUser(user);
+            persist(article);
+        }
         return article;
-
     }
 
     public List<Article> getAllArticlesForOneUser(int idUser) {

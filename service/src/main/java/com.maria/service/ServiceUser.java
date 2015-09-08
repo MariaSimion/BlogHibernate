@@ -43,7 +43,7 @@ public class ServiceUser implements IServiceUser {
         this.commentFacade = commentFacade;
     }
 
-    @POST
+    @PUT
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public void saveUser(User user) {
@@ -71,7 +71,7 @@ public class ServiceUser implements IServiceUser {
         return commentFacade.getCommentsFromAnArticleForOneUser(idArticle, idUser);
     }
 
-    @POST
+    @PUT
     @Transactional
     @Path("/{idUser}/articles")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -85,11 +85,11 @@ public class ServiceUser implements IServiceUser {
     @Transactional
     @Path("/{idUser}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public void deleteUser(@PathParam("idUser") int idUser){
+    public void deleteUser(@PathParam("idUser") int idUser) {
         User userPersisted = userFacade.getUser(idUser);
-        if(userPersisted != null){
+        if (userPersisted != null) {
             userFacade.deleteUser(userPersisted);
-        }else{
+        } else {
             throw new CustomException(String.format("User with id %s cannot be found.", idUser));
         }
     }
