@@ -9,6 +9,10 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by msimion on 9/2/2015.
@@ -24,8 +28,7 @@ public class ServiceArticleTest {
     @Before
     public void before() {
         MockitoAnnotations.initMocks(this);
-        serviceArticle = new ServiceArticle();
-        serviceArticle.setArticleFacade(articleFacade);
+        serviceArticle = new ServiceArticle(articleFacade);
     }
 
     @Test
@@ -42,6 +45,17 @@ public class ServiceArticleTest {
         Mockito.verifyNoMoreInteractions(articleFacade);
         Assert.assertEquals(article, result);
 
+    }
+
+    @Test
+    public void testGetArticles() {
+        List<Article> articles = new ArrayList<Article>();
+        Mockito.doReturn(articles).when(articleFacade).getArticles();
+
+        List<Article> resultArticles = serviceArticle.getAllArticles();
+        Mockito.verify(articleFacade).getArticles();
+        Mockito.verifyNoMoreInteractions(articleFacade);
+        Assert.assertEquals(articles, resultArticles);
     }
 
 }

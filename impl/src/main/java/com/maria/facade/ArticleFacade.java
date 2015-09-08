@@ -28,8 +28,8 @@ public class ArticleFacade implements IArticleFacade{
         return articleDao.getAllArticlesForOneUser(idUser);
     }
 
-    public Article createArticle(Article article, User user) {
-        return articleDao.saveArticle(article, user);
+    public Article persist(Article article, User user) {
+        return articleDao.persist(article, user);
     }
 
     public Article getOneArticleForOneUser(int idUser, int idArticle) {
@@ -37,7 +37,7 @@ public class ArticleFacade implements IArticleFacade{
     }
 
     public void deleteArticle(Article article) throws RuntimeException{
-        articleDao.delete(article, article.getId());
+        articleDao.delete(article.getId());
     }
 
     public void delete(int idUser, int idArticle){

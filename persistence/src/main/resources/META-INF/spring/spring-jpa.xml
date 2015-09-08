@@ -13,9 +13,9 @@
     <bean id="blogDataSource"
           class="org.apache.commons.dbcp.BasicDataSource"
           p:driverClassName= "com.mysql.jdbc.Driver"
-          p:url="${jdbc.url}"
-          p:username="${jdbc.username}"
-          p:password="${jdbc.password}">
+          p:url="jdbc:mysql://localhost:3306/blog"
+          p:username="root"
+          p:password="0000">
     </bean>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

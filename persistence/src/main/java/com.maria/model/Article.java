@@ -37,6 +37,13 @@ public class Article implements Serializable {
     public Article() {
     }
 
+    public Article(String title, String content, String author) {
+        this.title = title;
+        this.content = content;
+        this.date = date;
+        this.author = author;
+    }
+
     public int getId() {
         return id;
     }

@@ -9,4 +9,7 @@ import java.util.List;
  */
 public interface CommentDao extends GenericDao<Comment> {
 
+    List<Comment> getAllCommentsFromAnArticle(int id);
+
+    Comment saveComment(Comment comment, int id);
 }

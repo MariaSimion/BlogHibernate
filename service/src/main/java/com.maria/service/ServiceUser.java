@@ -25,20 +25,29 @@ import java.util.List;
 @Path("/user")
 public class ServiceUser implements IServiceUser {
 
-    @Autowired
+
     private IUserFacade userFacade;
 
-    @Autowired
+
     private IArticleFacade articleFacade;
 
-    @Autowired
+
     private ICommentFacade commentFacade;
+
+    public ServiceUser() {
+    }
+
+    public ServiceUser(IUserFacade userFacade, IArticleFacade articleFacade, ICommentFacade commentFacade) {
+        this.userFacade = userFacade;
+        this.articleFacade = articleFacade;
+        this.commentFacade = commentFacade;
+    }
 
     @POST
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public void saveUser(User user) {
-        userFacade.saveUser(user);
+        userFacade.persist(user);
     }
 
     @GET
@@ -69,7 +78,7 @@ public class ServiceUser implements IServiceUser {
     public Article saveArticle(@PathParam("idUser") int idUser, Article article) {
 
         User user = userFacade.getUser(idUser);
-        return articleFacade.createArticle(article, user);
+        return articleFacade.persist(article, user);
     }
 
     @DELETE
@@ -97,18 +106,5 @@ public class ServiceUser implements IServiceUser {
             throw new CustomException(String.format("Article with id %s cannot be found.", idArticle));
         }
 
-    }
-
-
-    public void setUserFacade(UserFacade userFacade) {
-        this.userFacade = userFacade;
-    }
-
-    public void setArticleFacade(ArticleFacade articleFacade) {
-        this.articleFacade = articleFacade;
-    }
-
-    public void setCommentFacade(CommentFacade commentFacade) {
-        this.commentFacade = commentFacade;
     }
 }

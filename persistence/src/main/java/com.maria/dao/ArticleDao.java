@@ -1,6 +1,8 @@
 package com.maria.dao;
+
 import com.maria.model.Article;
 import com.maria.model.User;
+import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
@@ -9,11 +11,11 @@ import java.util.List;
  */
 public interface ArticleDao extends GenericDao<Article> {
 
-    public List<Article> getAllArticlesForOneUser(int idUser);
+    List<Article> getAllArticlesForOneUser(int idUser);
 
-    public Article saveArticle(Article article, User user);
+    Article persist(Article article, User user);
 
-    public Article getOneArticleForOneUser(int idUser, int idArticle);
+    Article getOneArticleForOneUser(int idUser, int idArticle);
 
-    public void deleteArticle(int idUser, int idArticle);
+    void deleteArticle(int idUser, int idArticle);
 }

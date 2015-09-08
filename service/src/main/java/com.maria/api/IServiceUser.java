@@ -54,22 +54,4 @@ public interface IServiceUser {
      * @return article inserted in database for user with @idUser
      */
     Article saveArticle(@PathParam("idUser") int idUser, Article article);
-
-    /**
-     *
-     * @param userFacade
-     */
-    void setUserFacade(UserFacade userFacade);
-
-    /**
-     *
-     * @param articleFacade
-     */
-    void setArticleFacade(ArticleFacade articleFacade);
-
-    /**
-     *
-     * @param commentFacade
-     */
-    void setCommentFacade(CommentFacade commentFacade);
 }

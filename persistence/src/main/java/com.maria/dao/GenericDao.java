@@ -9,7 +9,7 @@ public interface GenericDao<T extends Object>{
 
     public T get(int id);
     public List<T> getAll();
-    public void save(T object);
-    public void delete(T object, int id);
+    public T persist(T object);
+    public void delete(int id);
 
 }

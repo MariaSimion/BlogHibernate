@@ -17,7 +17,7 @@ public interface IArticleFacade {
 
     List<Article> getAllArticlesForOneUser(int idUser);
 
-    Article createArticle(Article article, User user);
+    Article persist(Article article, User user);
 
     Article getOneArticleForOneUser(int idUser, int idArticle);
 

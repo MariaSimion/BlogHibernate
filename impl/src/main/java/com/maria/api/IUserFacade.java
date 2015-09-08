@@ -7,7 +7,7 @@ import com.maria.model.User;
  * Created by msimion on 9/2/2015.
  */
 public interface IUserFacade {
-    void saveUser(User user);
+    void persist(User user);
 
     User getUser(int id);
 

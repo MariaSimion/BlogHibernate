@@ -23,8 +23,4 @@ public interface IServiceArticle {
     Article getArticle(@PathParam("id") int id);
 
 
-    /**
-     * @param articleFacade
-     */
-    void setArticleFacade(ArticleFacade articleFacade);
 }

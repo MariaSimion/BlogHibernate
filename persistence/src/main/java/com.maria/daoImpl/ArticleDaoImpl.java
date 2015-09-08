@@ -1,16 +1,11 @@
 package com.maria.daoImpl;
 
 import com.maria.dao.ArticleDao;
-import com.maria.dao.GenericDao;
 import com.maria.model.Article;
 import com.maria.model.User;
 
-import org.springframework.stereotype.Repository;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
+
 import java.util.Date;
 import java.util.List;
 
@@ -25,25 +20,25 @@ public class ArticleDaoImpl extends GenericDaoImpl<Article> implements ArticleDa
     }
 
 
-    public Article saveArticle(Article article, User user) {
+    public Article persist(Article article, User user) {
 
         article.setDate(new Date());
         article.setUser(user);
-        save(article);
+        persist(article);
         return article;
 
     }
 
-    public List<Article> getAllArticlesForOneUser(int idUser){
+    public List<Article> getAllArticlesForOneUser(int idUser) {
         Query query = this.entityManager.createQuery("from Article where idUser=:idUser");
         query.setParameter("idUser", idUser);
         return query.getResultList();
     }
 
-    public Article getOneArticleForOneUser(int idUser, int idArticle){
+    public Article getOneArticleForOneUser(int idUser, int idArticle) {
         Article article = entityManager.find(Article.class, idArticle);
         User user = entityManager.find(User.class, idUser);
-        if(user.equals(article.getUser())){
+        if (user.equals(article.getUser())) {
             return article;
         }
         return null;
@@ -52,8 +47,8 @@ public class ArticleDaoImpl extends GenericDaoImpl<Article> implements ArticleDa
     public void deleteArticle(int idUser, int idArticle) {
         Article article = entityManager.find(Article.class, idArticle);
         User user = entityManager.find(User.class, idUser);
-        if(user.equals(article.getUser())){
-            delete(article, idArticle);
+        if (user.equals(article.getUser())) {
+            delete(idArticle);
         }
     }
 }

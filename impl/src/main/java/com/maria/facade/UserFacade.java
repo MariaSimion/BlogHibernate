@@ -11,8 +11,8 @@ public class UserFacade implements IUserFacade{
 
     UserDaoImpl userDao;
 
-    public void saveUser(User user) {
-        userDao.save(user);
+    public void persist(User user) {
+        userDao.persist(user);
     }
 
     public User getUser(int id) {
@@ -28,6 +28,6 @@ public class UserFacade implements IUserFacade{
     }
 
     public void deleteUser(User user){
-        userDao.delete(user, user.getId());
+        userDao.delete(user.getId());
     }
 }

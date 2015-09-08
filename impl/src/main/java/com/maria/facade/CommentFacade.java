@@ -26,7 +26,7 @@ public class CommentFacade implements ICommentFacade {
     }
 
     public void deleteComment(Comment comment) {
-        commentDao.delete(comment, comment.getId());
+        commentDao.delete(comment.getId());
     }
 
     public List<Comment> getCommentsFromAnArticle(int id) {

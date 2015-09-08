@@ -29,7 +29,7 @@ public class CommentDaoImpl extends GenericDaoImpl<Comment> implements CommentDa
         comment.setDate(new Date());
         article = entityManager.find(Article.class, id);
         comment.setArticle(article);
-        save(comment);
+        persist(comment);
         return comment;
 
     }

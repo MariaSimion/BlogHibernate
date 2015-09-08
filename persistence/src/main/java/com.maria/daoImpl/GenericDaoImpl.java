@@ -42,12 +42,15 @@ public class GenericDaoImpl<T extends Object> implements GenericDao<T> {
     }
 
 
-    public void save(T object) {
+    public T persist(T object) {
         entityManager.persist(object);
+        return object;
     }
 
-    public void delete(T object, int id) {
-        object = entityManager.find(type, id);
-        entityManager.remove(object);
+    public void delete(int id) {
+        T object = get(id);
+        if(object !=null){
+            entityManager.remove(object);
+        }
     }
 }

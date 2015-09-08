@@ -19,12 +19,18 @@ import java.util.List;
 @Path("/articles")
 public class ServiceArticle implements IServiceArticle {
 
-    @Autowired
     private IArticleFacade articleFacade;
+
+    public ServiceArticle (){}
+
+    public ServiceArticle(IArticleFacade articleFacade) {
+        this.articleFacade = articleFacade;
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Article> getAllArticles() {
+
         return articleFacade.getArticles();
     }
 
@@ -35,7 +41,4 @@ public class ServiceArticle implements IServiceArticle {
         return articleFacade.getArticle(id);
     }
 
-    public void setArticleFacade(ArticleFacade articleFacade) {
-        this.articleFacade = articleFacade;
-    }
 }

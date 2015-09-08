@@ -35,9 +35,4 @@ public interface IServiceComment {
      */
     void deleteComment(Comment comment, @PathParam("idComment") int id);
 
-    /**
-     *
-     * @param commentFacade
-     */
-    void setCommentFacade(CommentFacade commentFacade);
 }

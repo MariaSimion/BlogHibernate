@@ -18,8 +18,15 @@ import java.util.List;
 @Transactional
 public class ServiceComment implements IServiceComment{
 
-    @Autowired
+
     private ICommentFacade commentFacade;
+
+    public ServiceComment() {
+    }
+
+    public ServiceComment(ICommentFacade commentFacade) {
+        this.commentFacade = commentFacade;
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,8 +50,6 @@ public class ServiceComment implements IServiceComment{
         commentFacade.deleteComment(comment);
     }
 
-    public void setCommentFacade(CommentFacade commentFacade) {
-        this.commentFacade = commentFacade;
-    }
+
 
 }
