@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Created by msimion on 8/31/2015.
  */
-@Path("/my-articles")
+@Path("/articles/my-articles")
 public class ServiceUser implements IServiceUser {
 
 
@@ -55,7 +55,6 @@ public class ServiceUser implements IServiceUser {
 
 
     @GET
-    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Article> getAllArticlesForOneUser(int idUser) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
