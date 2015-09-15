@@ -1,6 +1,8 @@
 package com.maria.exceptions;
 
 
+import javafx.animation.Animation;
+
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
@@ -12,13 +14,26 @@ import java.util.Map;
  */
 public class CustomExceptionMapper implements ExceptionMapper<CustomException> {
 
-    public Response toResponse(CustomException ex) {
-        Map<String, Object> json = new HashMap<String, Object>();
-        json.put("errors", new String[]{ex.getMessage()});
+    Map<String, String> json;
 
-        return Response.status(Response.Status.NOT_FOUND.getStatusCode())
-                .entity(json)
-                .type(MediaType.APPLICATION_JSON)
-                .build();
+    public Response toResponse(CustomException ex) {
+
+        json = new HashMap<>();
+        json.put("errors", ex.toString());
+
+        switch (ex.getErrorCode()) {
+            case ("NOT_FOUND"):
+                return Response.status(Response.Status.NOT_FOUND.getStatusCode())
+                        .entity(json.get("errors"))
+                        .type(MediaType.APPLICATION_JSON)
+                        .build();
+            case ("BAD_REQUEST"):
+                return Response.status(Response.Status.BAD_REQUEST.getStatusCode())
+                        .entity(json.get("errors"))
+                        .type(MediaType.APPLICATION_JSON)
+                        .build();
+            default:
+                return Response.status(Response.Status.ACCEPTED.getStatusCode()).build();
+        }
     }
 }

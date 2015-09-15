@@ -21,7 +21,8 @@ public class ServiceArticle implements IServiceArticle {
 
     private IArticleFacade articleFacade;
 
-    public ServiceArticle (){}
+    public ServiceArticle() {
+    }
 
     public ServiceArticle(IArticleFacade articleFacade) {
         this.articleFacade = articleFacade;
@@ -38,7 +39,11 @@ public class ServiceArticle implements IServiceArticle {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Article getArticle(@PathParam("id") int id) {
-        return articleFacade.getArticle(id);
+        Article persisted = articleFacade.getArticle(id);
+        if (persisted != null) {
+            return articleFacade.getArticle(id);
+        } else {
+            throw new CustomException(String.format("Article with id %s does not exist.", id), "BAD_REQUEST");
+        }
     }
-
 }

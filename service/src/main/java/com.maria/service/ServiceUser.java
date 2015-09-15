@@ -12,17 +12,22 @@ import com.maria.model.Article;
 import com.maria.model.Comment;
 import com.maria.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.*;
 
 import javax.ws.rs.core.MediaType;
+import java.security.Principal;
 import java.util.List;
 
 /**
  * Created by msimion on 8/31/2015.
  */
-@Path("/user")
+@Path("/my-articles")
 public class ServiceUser implements IServiceUser {
 
 
@@ -43,68 +48,34 @@ public class ServiceUser implements IServiceUser {
         this.commentFacade = commentFacade;
     }
 
-    @PUT
-    @Transactional
-    @Consumes(MediaType.APPLICATION_JSON)
+
     public void saveUser(User user) {
-        userFacade.persist(user);
+
     }
+
 
     @GET
-    @Path("/{idUser}/articles")
+    @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Article> getAllArticlesForOneUser(@PathParam("idUser") int idUser) {
-        return articleFacade.getAllArticlesForOneUser(idUser);
+    public List<Article> getAllArticlesForOneUser(int idUser) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getPrincipal().toString();
+        User user = userFacade.getUser(username);
+        return articleFacade.getAllArticlesForOneUser(user.getId());
     }
 
-    @GET
-    @Path("/{idUser}/articles/{idArticle}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Article getArticle(@PathParam("idUser") int idUser, @PathParam("idArticle") int idArticle) {
-        return articleFacade.getOneArticleForOneUser(idUser, idArticle);
+
+    public Article getArticle(int idUser, int idArticle) {
+        return null;
     }
 
-    @GET
-    @Path("/{idUser}/articles/{idArticle}/comments")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Comment> getCommentsFromAnArticle(@PathParam("idUser") int idUser, @PathParam("idArticle") int idArticle) {
-        return commentFacade.getCommentsFromAnArticleForOneUser(idArticle, idUser);
+
+    public List<Comment> getCommentsFromAnArticle(int idUser, int idArticle) {
+        return null;
     }
 
-    @PUT
-    @Transactional
-    @Path("/{idUser}/articles")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Article saveArticle(@PathParam("idUser") int idUser, Article article) {
 
-        User user = userFacade.getUser(idUser);
-        return articleFacade.persist(article, user);
-    }
-
-    @DELETE
-    @Transactional
-    @Path("/{idUser}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void deleteUser(@PathParam("idUser") int idUser) {
-        User userPersisted = userFacade.getUser(idUser);
-        if (userPersisted != null) {
-            userFacade.deleteUser(userPersisted);
-        } else {
-            throw new CustomException(String.format("User with id %s cannot be found.", idUser));
-        }
-    }
-
-    @DELETE
-    @Transactional
-    @Path("/{idUser}/articles/{idArticle}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void deleteArticle(@PathParam("idUser") int idUser, @PathParam("idArticle") int idArticle) {
-        Article persisted = getArticle(idUser, idArticle);
-        if (persisted != null) {
-            articleFacade.delete(idUser, idArticle);
-        } else {
-            throw new CustomException(String.format("Article with id %s cannot be found.", idArticle));
-        }
-
+    public Article saveArticle(int idUser, Article article) {
+        return null;
     }
 }

@@ -5,6 +5,7 @@ import com.maria.dao.UserDao;
 import com.maria.model.Article;
 import com.maria.model.User;
 
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -23,5 +24,12 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
             persist(user);
         }
         return user;
+    }
+
+    public User getUser(String username) {
+
+        Query query = entityManager.createQuery("from User where username=:username");
+        query.setParameter("username", username);
+        return (User) query.getSingleResult();
     }
 }

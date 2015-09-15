@@ -18,6 +18,8 @@ public interface ICommentFacade {
 
     List<Comment> getCommentsFromAnArticle(int id);
 
+    Comment getComment(int idComment);
+
     List<Comment> getCommentsFromAnArticleForOneUser(int idArticle, int idUser);
 
     CommentDaoImpl getCommentDao();

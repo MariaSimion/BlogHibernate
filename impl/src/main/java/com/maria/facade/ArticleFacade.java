@@ -25,6 +25,7 @@ public class ArticleFacade implements IArticleFacade{
     }
 
     public List<Article> getAllArticlesForOneUser(int idUser) {
+
         return articleDao.getAllArticlesForOneUser(idUser);
     }
 

@@ -20,7 +20,6 @@ public class JavaUtilDateSerializer extends JsonSerializer<Date> {
     public void serialize(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String format = formatter.format(date);
-        System.out.println(format);
         jsonGenerator.writeString(format);
     }
 }

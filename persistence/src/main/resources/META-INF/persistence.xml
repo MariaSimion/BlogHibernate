@@ -14,5 +14,8 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
         <class>
             com.maria.model.User
         </class>
+        <class>
+            com.maria.model.Role
+        </class>
     </persistence-unit>
 </persistence>

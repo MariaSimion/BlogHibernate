@@ -4,19 +4,20 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="serviceArticle" class="com.maria.service.ServiceArticle">
-        <constructor-arg ref="articleFacade" />
+        <constructor-arg ref="articleFacade"/>
     </bean>
 
     <bean id="serviceComment" class="com.maria.service.ServiceComment">
-        <constructor-arg ref="commentFacade" />
+        <constructor-arg ref="commentFacade"/>
     </bean>
 
     <bean id="serviceUser" class="com.maria.service.ServiceUser">
-        <constructor-arg ref="userFacade" />
-        <constructor-arg ref="articleFacade" />
-        <constructor-arg ref="commentFacade" />
+        <constructor-arg ref="userFacade"/>
+        <constructor-arg ref="articleFacade"/>
+        <constructor-arg ref="commentFacade"/>
     </bean>
 
+    <bean id="assemble" class="com.maria.service.Assembler"/>
 
     <bean id="articleFacade" class="com.maria.facade.ArticleFacade"/>
     <bean id="commentFacade" class="com.maria.facade.CommentFacade"/>

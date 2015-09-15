@@ -29,10 +29,9 @@ public interface IServiceComment {
     Comment saveComment(Comment comment, @PathParam("id") int id);
 
     /**
-     * Delete @comment with @param id
-     * @param comment
+     * Delete comment with @param id
      * @param id
      */
-    void deleteComment(Comment comment, @PathParam("idComment") int id);
+    void deleteComment(@PathParam("idComment") int id);
 
 }

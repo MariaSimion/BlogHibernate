@@ -7,7 +7,7 @@ import com.maria.model.User;
 /**
  * Created by msimion on 8/31/2015.
  */
-public class UserFacade implements IUserFacade{
+public class UserFacade implements IUserFacade {
 
     UserDaoImpl userDao;
 
@@ -27,7 +27,11 @@ public class UserFacade implements IUserFacade{
         this.userDao = userDao;
     }
 
-    public void deleteUser(User user){
+    public void deleteUser(User user) {
         userDao.delete(user.getId());
+    }
+
+    public User getUser(String username) {
+        return userDao.getUser(username);
     }
 }

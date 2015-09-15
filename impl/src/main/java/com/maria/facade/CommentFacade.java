@@ -33,6 +33,10 @@ public class CommentFacade implements ICommentFacade {
         return commentDao.getAllCommentsFromAnArticle(id);
     }
 
+    public Comment getComment(int idComment){
+        return commentDao.get(idComment);
+    }
+
     public List<Comment> getCommentsFromAnArticleForOneUser(int idArticle, int idUser) {
         Article article = articleDao.get(idArticle);
         User user = userDao.get(idUser);

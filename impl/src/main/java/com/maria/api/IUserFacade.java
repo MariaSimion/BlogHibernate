@@ -16,4 +16,6 @@ public interface IUserFacade {
     void setUserDao(UserDaoImpl userDao);
 
     void deleteUser(User user);
+
+    User getUser(String username);
 }

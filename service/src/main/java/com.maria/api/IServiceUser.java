@@ -25,10 +25,9 @@ public interface IServiceUser {
 
     /**
      *
-     * @param idUser
      * @return all articles written by user with @id
      */
-    List<Article> getAllArticlesForOneUser(@PathParam("idUser") int idUser);
+    List<Article> getAllArticlesForOneUser(int idUser);
 
     /**
      *

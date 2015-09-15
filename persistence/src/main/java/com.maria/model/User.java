@@ -1,12 +1,15 @@
 package com.maria.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by msimion on 8/28/2015.
  */
 @Entity
+@Table(name = "user")
 public class User {
 
     @Id
@@ -19,6 +22,14 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = {
+            @JoinColumn(name = "idUser", nullable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "idRole", nullable = false)
+            })
+    private Set<Role> roles = new HashSet<Role>(0);
 
     public User(String username, String password) {
         this.username = username;
@@ -52,6 +63,13 @@ public class User {
         this.password = password;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     @Override
     public boolean equals(Object o) {
